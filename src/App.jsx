@@ -6,6 +6,11 @@ import { db } from "./data/db"
 
 function App() {
   const[data,setData] = useState(db)
+  const [cart, setCart] = useState([])
+
+  function addToCart(item) {
+    setCart(prevCart=>[...prevCart,item])
+  }
   // useEffect(()=>{
   //   setData(db)
   // }, [])
@@ -20,8 +25,11 @@ function App() {
         <div className="row mt-5">
        {data.map((guitar)=>(
         <Guitar
-        key={guitar.id}
+         key={guitar.id}
           guitar={guitar}
+          setCart={setCart}
+          cart={cart}
+          addToCart={addToCart}
         />
       ))}
         </div>
