@@ -9,7 +9,15 @@ function App() {
   const [cart, setCart] = useState([])
 
   function addToCart(item) {
-    setCart(prevCart=>[...prevCart,item])
+    const itemExist = cart.findIndex(guitar=>guitar.id=== item.id)
+    if(itemExist>=0){
+      const updateCart = [...cart]
+      updateCart[itemExist].quality++
+      setCart(updateCart)
+    }else{
+     item.quality = 1
+      setCart([...cart,item])
+    }
   }
   // useEffect(()=>{
   //   setData(db)
