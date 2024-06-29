@@ -1,9 +1,9 @@
 import React from 'react'
 import { useMemo } from 'react'
-export const Header = ({cart,removeFromCart}) => {
+export const Header = ({cart,removeFromCart,incrementQuantity,decrementQuantity}) => {
     //state derivado
     const isEmpy = useMemo(() => cart.length === 0,[cart] )
-    const cartTotal = useMemo(()=> cart.reduce((total, item)=> total+(item.quality * item.price), 0),[cart])
+    const cartTotal = useMemo(()=> cart.reduce((total, item)=> total+(item.quantity * item.price), 0),[cart])
   return (
     <header className="py-5 header">
     <div className="container-xl">
@@ -52,13 +52,15 @@ export const Header = ({cart,removeFromCart}) => {
                                         <button
                                             type="button"
                                             className="btn btn-dark"
+                                            onClick={()=>decrementQuantity(guitar.id)}
                                         >
                                             -
                                         </button>
-                                            {guitar.quality}
+                                            {guitar.quantity}
                                         <button
                                             type="button"
                                             className="btn btn-dark"
+                                            onClick={()=>incrementQuantity(guitar.id)}
                                         >
                                             +
                                         </button>
